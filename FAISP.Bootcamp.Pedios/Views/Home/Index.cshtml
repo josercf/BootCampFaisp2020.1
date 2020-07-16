@@ -1,0 +1,21 @@
+﻿@Model System.Collections.Generic.List<FAISP.Bootcamp.Pedios.Models>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+     <div class="row">
+
+    @foreach (var itemPedido in Model)
+    {
+        <div class="col-3">
+            <h1>@itemPedido.Titulo</h1>
+            <img src="@itemPedido.UrlImagem"/>
+            <p>@itemPedido.Descricao</p> 
+            <a class="btn btn-success" href="/FazerPedido?@itemPedido.IdPedido">Escolher este</a>
+        </div>
+        <div class="col-1"></div>    
+        }
+    </div>    
+</div>
