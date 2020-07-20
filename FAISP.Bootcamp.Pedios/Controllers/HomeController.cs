@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FAISP.Bootcamp.Pedios.Models;
+using FAISP.Bootcamp.Pedios.Servicos;
 
 namespace FAISP.Bootcamp.Pedios.Controllers
 {
@@ -20,28 +21,8 @@ namespace FAISP.Bootcamp.Pedios.Controllers
 
         public IActionResult Index()
         {
-            ItemPedido item1 = new ItemPedido();
-            item1.IdPedido = 1;
-            item1.UrlImagem = "https://cache.dominos.com/olo/6_28_0/assets/build/market/BR/_pt/images/img/products/larges/S_PIZQU.jpg";
-            item1.Titulo = "Pizza 01";
-            item1.Descricao = "Frango com Catupiry";
-
-            ItemPedido item2 = new ItemPedido();
-            item1.IdPedido = 2;
-            item2.UrlImagem = "https://cache.dominos.com/olo/6_28_0/assets/build/market/BR/_pt/images/img/products/larges/S_PIZQU.jpg";
-            item2.Titulo = "Pizza 02";
-            item2.Descricao = "Portugesa";
-
-            ItemPedido item3 = new ItemPedido();
-            item1.IdPedido = 3;
-            item3.UrlImagem = "https://cache.dominos.com/olo/6_28_0/assets/build/market/BR/_pt/images/img/products/larges/S_PIZQU.jpg";
-            item3.Titulo = "Pizza 03";
-            item3.Descricao = "Quatro Queijos";
-
-            var cardapio = new List<ItemPedido>();
-            cardapio.Add(item1);
-            cardapio.Add(item2);
-            cardapio.Add(item3);
+           var cardapioServico = new CardapioServico();
+            var cardapio = cardapioServico.ListarCardapio();           
 
             return View(cardapio);
         }
