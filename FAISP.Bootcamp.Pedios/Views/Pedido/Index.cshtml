@@ -1,0 +1,23 @@
+﻿@Model FAISP.Bootcamp.Pedios.Models.PedidoModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="coll-6">
+
+
+        </div>
+
+
+        <div class="coll-6">
+            <label asp-for="NomeCliente" class="control-label"></label>
+            <input asp-for="NomeCliente" class="form-control" />
+            <span asp-validation-for="NomeCliente" class="text-danger"></span>
+
+
+        </div>
+
+    </div>
+</div>
