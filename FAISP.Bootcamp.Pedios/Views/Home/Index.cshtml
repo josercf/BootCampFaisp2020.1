@@ -1,4 +1,4 @@
-﻿@Model System.Collections.Generic.List<FAISP.Bootcamp.Pedios.Models.Pizza>
+﻿@model System.Collections.Generic.List<FAISP.Bootcamp.Pedios.Models.Pizza>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -13,7 +13,7 @@
             <h1>@itemPedido.Titulo</h1>
             <img src="@itemPedido.UrlImagem"/>
             <p>@itemPedido.Descricao</p> 
-            <a class="btn btn-success" href="/FazerPedido?@itemPedido.IdPizza">Escolher este</a>
+            <a class="btn btn-success" href="/Pedido/Index?idItemCardapio=@itemPedido.IdPizza">Escolher este</a>
         </div>
         <div class="col-1"></div>    
         }

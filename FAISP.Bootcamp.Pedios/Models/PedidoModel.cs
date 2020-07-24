@@ -1,5 +1,5 @@
-﻿using System;
-using FAISP.Bootcamp.Pedios.Models;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FAISP.Bootcamp.Pedios.Models
 {
@@ -9,10 +9,16 @@ namespace FAISP.Bootcamp.Pedios.Models
         {
         }
 
+        [DisplayName("Nome:")]
+        [Required(ErrorMessage = "Informe o seu nome")]
         public string NomeCliente { get; set; }
 
+        [DisplayName("Telefone com DDD:")]
+        [Required(ErrorMessage ="Informe o seu número de telefone")]
         public string TelefoneContato { get; set; }
 
+        [DisplayName("Forma Pagto")]
+        [Required]
         public string FormaPagamento { get; set; }
 
         public decimal Valor { get; set; }

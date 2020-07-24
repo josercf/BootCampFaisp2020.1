@@ -1,23 +1,140 @@
-﻿@Model FAISP.Bootcamp.Pedios.Models.PedidoModel
+﻿@model FAISP.Bootcamp.Pedios.Models.PedidoModel
+
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
 }
 
+<h1>@Model.Pizza.Titulo</h1>
+
+<h4>@Model.Pizza.Descricao</h4>
+<hr />
 <div class="container">
-    <div class="row">
-        <div class="coll-6">
+    <div class="col-12">
+        <form asp-action="FazerPedido">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+            <div class="row">
+                <div class="col-8">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label asp-for="NomeCliente" class="control-label"></label>
+                            <input asp-for="NomeCliente" class="form-control" />
+                            <span asp-validation-for="NomeCliente" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-6">
 
-        </div>
+                        <div class="form-group">
+                            <label asp-for="TelefoneContato" class="control-label"></label>
+                            <input asp-for="TelefoneContato" class="form-control" />
+                            <span asp-validation-for="TelefoneContato" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <img src="@Model.Pizza.UrlImagem" />
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Valor" class="control-label"></label>
+                        <input asp-for="Valor" disabled class="form-control" />
+                        <span asp-validation-for="Valor" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="FormaPagamento" class="control-label"></label>
+                        <input asp-for="FormaPagamento" class="form-control" />
+                        <span asp-validation-for="FormaPagamento" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="coll-6">
-            <label asp-for="NomeCliente" class="control-label"></label>
-            <input asp-for="NomeCliente" class="form-control" />
-            <span asp-validation-for="NomeCliente" class="text-danger"></span>
+            <div class="row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="Cep" class="control-label"></label>
+                        <input asp-for="Cep" id="txtCep" class="form-control" />
+                        <span asp-validation-for="Cep" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="Logradouro" class="control-label"></label>
+                        <input asp-for="Logradouro" id="logradouro" class="form-control" />
+                        <span asp-validation-for="Logradouro" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label asp-for="Numero" class="control-label"></label>
+                        <input asp-for="Numero" class="form-control" />
+                        <span asp-validation-for="Numero" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-group">
+                        <label asp-for="Complemento" class="control-label"></label>
+                        <input asp-for="Complemento" class="form-control" />
+                        <span asp-validation-for="Complemento" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Bairro" class="control-label"></label>
+                        <input asp-for="Bairro" id="bairro" class="form-control" />
+                        <span asp-validation-for="Bairro" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label asp-for="Cidade" class="control-label"></label>
+                        <input asp-for="Cidade" id="cidade" class="form-control" />
+                        <span asp-validation-for="Cidade" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
 
-        </div>
-
+            <div class="form-group">
+                <input type="submit" value="Fazer meu pedido" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
 </div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Voltar para o cardapio</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#txtCep").blur(function () {
+
+                var cep = $("#txtCep").val();
+
+                if (cep != "") {
+
+                    $.getJSON("https://viacep.com.br/ws/" + cep + "/json/", function (dados) {
+
+                        $("#logradouro").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
+                    });
+                }
+            });
+        });
+
+    </script>
+
+}

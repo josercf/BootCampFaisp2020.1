@@ -21,5 +21,14 @@ namespace FAISP.Bootcamp.Pedios.Servicos
 
             return cardapio;
         }
+
+        public Pizza ObterPizza(int idPizza)
+        {
+            var collection = mongoDatabase.GetCollection<Pizza>("cardapio");
+            var item = collection.Find(c => c.IdPizza == idPizza);
+
+
+            return item.First();
+        }
     }
 }
