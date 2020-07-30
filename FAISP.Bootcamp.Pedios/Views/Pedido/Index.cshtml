@@ -11,6 +11,8 @@
 <div class="container">
     <div class="col-12">
         <form asp-action="FazerPedido">
+            <input type="hidden" asp-for="PizzaId" />
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="row">

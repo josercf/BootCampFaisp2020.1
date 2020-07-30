@@ -19,9 +19,10 @@ namespace FAISP.Bootcamp.Pedios.Controllers
             var pizza = cardapioServico.ObterPizza(idItemCardapio);
 
             var model = new PedidoModel();
+
+            model.PizzaId = pizza.IdPizza;
             model.Valor = pizza.Valor;
             model.Pizza = pizza;
-
             return View(model);
         }
 
@@ -30,9 +31,17 @@ namespace FAISP.Bootcamp.Pedios.Controllers
         [HttpPost]
         public IActionResult FazerPedido(PedidoModel model)
         {
+            var cardapioServico = new CardapioServico();
+            var pizza = cardapioServico.ObterPizza(model.PizzaId);
+            model.Valor = pizza.Valor;
+            model.Pizza = pizza;
 
+            var pedidoServico = new PedidoServico();
+            pedidoServico.FazerPedido(model);
 
-            return View("Index");
+            ViewBag.Numero = model.PedidoId.ToString().PadLeft(5, '0');
+
+            return View("DadosPedido");
         }
     }
 }

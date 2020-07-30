@@ -1,0 +1,23 @@
+﻿@model IEnumerable<FAISP.Bootcamp.Pedios.Models.PedidoModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pedidos</h1>
+
+<div class="row">
+
+    @foreach (var pedido in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@pedido.Pizza.Titulo</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@pedido.DataCriacao</h6>
+                <p class="card-text">@pedido.NomeCliente</p>
+                <p class="card-text">@pedido.TelefoneContato</p>
+            </div>
+        </div>
+    }
+</div>
+
