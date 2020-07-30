@@ -21,10 +21,21 @@ namespace FAISP.Bootcamp.Pedios.Controllers
 
         public IActionResult Index()
         {
-           var cardapioServico = new CardapioServico();
-            var cardapio = cardapioServico.ListarCardapio();           
+            try
+            {
 
-            return View(cardapio);
+                var cardapioServico = new CardapioServico();
+                var cardapio = cardapioServico.ListarCardapio();
+
+                ViewBag.Error = "";
+
+                return View(cardapio);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.ToString();
+                return View(new List<Pizza>());
+            }
         }
 
         public IActionResult Privacy()

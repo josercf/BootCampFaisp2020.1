@@ -4,18 +4,23 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-     <div class="row">
+@if (@ViewBag.Error != "")
+{
+    <p>@ViewBag.Error </p>
+}
 
-    @foreach (var itemPedido in Model)
-    {
-        <div class="col-3">
-            <h1>@itemPedido.Titulo</h1>
-            <img src="@itemPedido.UrlImagem"/>
-            <p>@itemPedido.Descricao</p> 
-            <a class="btn btn-success" href="/Pedido/Index?idItemCardapio=@itemPedido.IdPizza">Escolher este</a>
-        </div>
-        <div class="col-1"></div>    
+<div class="container">
+    <div class="row">
+
+        @foreach (var itemPedido in Model)
+        {
+            <div class="col-3">
+                <h1>@itemPedido.Titulo</h1>
+                <img src="@itemPedido.UrlImagem" />
+                <p>@itemPedido.Descricao</p>
+                <a class="btn btn-success" href="/Pedido/Index?idItemCardapio=@itemPedido.IdPizza">Escolher este</a>
+            </div>
+            <div class="col-1"></div>
         }
-    </div>    
+    </div>
 </div>
